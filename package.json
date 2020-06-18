@@ -1,0 +1,12 @@
+{
+  "name": "sofia",
+  "version": "0.0.1",
+  "description": "An extreme lightweight test-runner for ECMAScript modules",
+  "author": "Fredrik Olofsson <evoozer@gmail.com>",
+  "bin": {
+    "sofia": "./bin/sofia.mjs"
+  },
+  "dependencies": {
+    "glob": "^7.1.6"
+  }
+}
