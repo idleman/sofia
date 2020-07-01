@@ -100,18 +100,16 @@ export default class Runner {
   async run(reporter) {
     this._swapGlobalScope();
     const { files } = this._Runner;
-    await Promise.all(files.map(file => (async () => {
+    for(const file of files) {
       try {
         const exports = await import(file);
-        return exports;
       } catch(err) {
-        const { stack } = err;
-        const next = stack.split('\n');
-        next.splice(1, 0, '  '.repeat(2) + 'at ' + file.substr(12));
-        err.stack = next.join('\n');
-        throw err;
+        console.error('Error in file', file);
+        console.error(err);
+        process.exit(1);
+        return;
       }
-    })()));
+    }
     this._swapGlobalScope();
     const tests = this._getTestsToRun();
     await reporter.start();
