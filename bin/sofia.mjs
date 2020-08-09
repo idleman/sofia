@@ -26,7 +26,7 @@ function getNormalizedPath(path) {
   return 'file:///' + result.join('/');
 };
 
-const getFilesByPattern = pattern => new Promise((resolve, reject) => _glob(pattern, { absolute: true }, (err, files) => err ? reject(err) : resolve(files)));
+const getFilesByPattern = pattern => new Promise((resolve, reject) => _glob(pattern, { absolute: true, ignore: ['**/node_modules/**'] }, (err, files) => err ? reject(err) : resolve(files)));
 
 (async () => {
   const { argv = [] } = process;
